@@ -23,6 +23,8 @@ public class RegistrarPacienteActivity extends AppCompatActivity{
     private Switch covidTxt, tosTxt;
     private Toolbar toolbar;
     private Button agregarBtn;
+    private Calendar myCalendar = Calendar.getInstance();
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +52,15 @@ public class RegistrarPacienteActivity extends AppCompatActivity{
         this.agregarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Paciente p = new Paciente();
 
                 p.setRut(rutTxt.getText().toString());
                 p.setNombre(nombreTxt.getText().toString());
                 p.setApellido(apellidoTxt.getText().toString());
-                p.setFecha(fechaTxt.getDate());
                 p.setArea(areaTxt.getSelectedItem().toString());
                 p.setTemperatura(Integer.parseInt(temperaturaTxt.getText().toString()));
-
                 p.setPresion(Integer.parseInt(presionTxt.getText().toString()));
-
-                pacienteDAO.save(p);
+                pacientDAO.save(p);
                 startActivity(new Intent(RegistrarPacienteViewActivity.this
                         , ListaPacienteActivity.class));
             }
